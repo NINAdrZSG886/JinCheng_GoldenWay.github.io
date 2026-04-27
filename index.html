@@ -1,34 +1,41 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>控制面板</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 100px;
+    }
+    .card {
+      display: inline-block;
+      padding: 30px;
+      margin: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .card:hover {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
 <body>
 
-<h3>版本 v2</h3>
+<h1>设备控制中心</h1>
 
-<button onclick="test()">测试按钮</button>
-<button onclick="connect()">连接蓝牙</button>
+<div class="card" onclick="go('ota.html')">
+  🔵 蓝牙 OTA 升级
+</div>
+
+<div class="card" onclick="go('serial.html')">
+  🔌 串口工具（预留）
+</div>
 
 <script>
-function test() {
-  alert("页面已更新 OK");
-}
-
-async function connect() {
-  alert("开始执行 connect");
-
-  try {
-    const device = await navigator.bluetooth.requestDevice({
-      acceptAllDevices: true
-    });
-
-    alert("已弹出设备选择");
-
-    const server = await device.gatt.connect();
-    alert("已连接");
-
-  } catch (e) {
-    alert("出错: " + e);
-    console.error(e);
-  }
+function go(page) {
+  window.location.href = page;
 }
 </script>
 
