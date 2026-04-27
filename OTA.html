@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>蓝牙 OTA 页面</h2>
+
+<button onclick="connect()">连接设备</button>
+
+<script>
+async function connect() {
+  try {
+    const device = await navigator.bluetooth.requestDevice({
+      acceptAllDevices: true
+    });
+
+    const server = await device.gatt.connect();
+    alert("已连接设备");
+
+  } catch (e) {
+    alert(e);
+  }
+}
+</script>
+
+</body>
+</html>
