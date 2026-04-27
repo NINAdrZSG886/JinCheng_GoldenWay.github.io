@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="connect()">连接蓝牙</button>
+
+<script>
+async function connect() {
+  try {
+    const device = await navigator.bluetooth.requestDevice({
+      acceptAllDevices: true,
+      optionalServices: ['1234'] // 你的服务UUID
+    });
+
+    console.log("设备:", device.name);
+
+    const server = await device.gatt.connect();
+    console.log("已连接");
+
+    const service = await server.getPrimaryService('1234');
+    const characteristic = await service.getCharacteristic('5678');
+
+    console.log("拿到特征值");
+
+  } catch (e) {
+    console.error(e);
+  }
+}
+</script>
+
+</body>
+</html>
