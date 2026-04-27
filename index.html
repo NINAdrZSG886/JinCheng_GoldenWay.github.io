@@ -2,21 +2,31 @@
 <html>
 <body>
 
+<h3>版本 v2</h3>
+
+<button onclick="test()">测试按钮</button>
 <button onclick="connect()">连接蓝牙</button>
 
 <script>
+function test() {
+  alert("页面已更新 OK");
+}
+
 async function connect() {
+  alert("开始执行 connect");
+
   try {
     const device = await navigator.bluetooth.requestDevice({
       acceptAllDevices: true
     });
 
-    console.log("设备:", device.name);
+    alert("已弹出设备选择");
 
     const server = await device.gatt.connect();
-    console.log("已连接");
+    alert("已连接");
 
   } catch (e) {
+    alert("出错: " + e);
     console.error(e);
   }
 }
